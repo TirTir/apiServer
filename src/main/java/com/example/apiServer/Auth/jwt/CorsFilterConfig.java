@@ -1,4 +1,4 @@
-package com.example.apiServer.Auth;
+package com.example.apiServer.Auth.jwt;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
