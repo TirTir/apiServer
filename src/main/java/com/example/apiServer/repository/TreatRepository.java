@@ -1,23 +1,12 @@
 package com.example.apiServer.repository;
 
 import com.example.apiServer.entity.Treat;
-import jakarta.persistence.EntityManager;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
-@Repository
-public class TreatRepository {
-    @Autowired
-    private EntityManager em;
-
-    public void save (Treat treat){
-        em.persist(treat);
-    }
-
-    public List<Treat> findAll(int id){
-        return em.createQuery("select t from Treat t", Treat.class)
-                .getResultList();
-    }
+public interface TreatRepository extends JpaRepository<Treat, Long> {
+    Optional<Treat> findById(Long id);
+    List<Treat> findAllByIdentity(String identity);
 }
