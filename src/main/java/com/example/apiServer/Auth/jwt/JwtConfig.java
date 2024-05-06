@@ -9,6 +9,6 @@ import org.springframework.context.annotation.Configuration;
 public class JwtConfig {
     @Bean
     public TokenProvider tokenProvider(JwtProperties jwtProperties) {
-        return new TokenProvider(jwtProperties.getSecret(), jwtProperties.getAccessTokenValidityInSeconds());
+        return new TokenProvider(jwtProperties.getSecret(), jwtProperties.getValidityInSeconds());
     }
 }

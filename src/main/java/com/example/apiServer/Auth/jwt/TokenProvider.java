@@ -1,5 +1,8 @@
 package com.example.apiServer.Auth.jwt;
 
+import com.example.apiServer.entity.RefreshToken;
+import com.example.apiServer.repository.RefreshTokenRepository;
+import com.example.apiServer.repository.TreatRepository;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -14,34 +17,48 @@ import java.security.Key;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
 public class TokenProvider {
     private static final String AUTHORITIES_KEY = "auth";
     private final String secret;
-    private final long tokenValidityInSeconds;
-
     private Key key;
+    private final long validityInSeconds;
+    // 어세스 토큰 유효시간 (1시간)
+    private long accessTokenValidTime = 1 * 60 * 60 * 1000L;
+    // 리프레시 토큰 유효시간 (1일)
+    private long refreshTokenValidTime = 24 * 60 * 60 * 1000L;
 
     @Autowired
+    private RefreshTokenRepository refreshTokenRepository;
 
-    public TokenProvider(String secret, long tokenValidityInSeconds) {
+    @Autowired
+    public TokenProvider(String secret, Long validityInSeconds) {
         this.secret = secret;
-        this.tokenValidityInSeconds = tokenValidityInSeconds;
+        this.validityInSeconds = validityInSeconds;
 
         // 시크릿 값을 복호화(decode) 하여 키 변수에 할당
         byte[] keyBytes = Decoders.BASE64.decode(secret);
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public String createToken(Authentication authentication) {
+    // Access Token 생성.
+    public String createAccessToken(Authentication authentication){
+        return this.createToken(authentication, accessTokenValidTime);
+    }
+    // Refresh Token 생성.
+    public String createRefreshToken(Authentication authentication) {
+        return this.createToken(authentication, refreshTokenValidTime);
+    }
+
+    public String createToken(Authentication authentication, long validityInSeconds) {
         String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
 
-        long now = (new Date()).getTime();
-        Date validity = new Date(now + this.tokenValidityInSeconds * 1000);
+        Date validity = new Date(validityInSeconds + this.validityInSeconds * 1000);
         return Jwts.builder()
                 .setSubject(authentication.getName())
                 .claim(AUTHORITIES_KEY, authorities)
@@ -96,5 +113,17 @@ public class TokenProvider {
         }
 
         return false;
+    }
+
+
+    /**
+     * 리프레시 토큰 체크
+     *
+     * @param refreshToken
+     * @return
+     */
+    public boolean existsRefreshToken(String refreshToken) {
+        Optional<RefreshToken> optionalToken = refreshTokenRepository.findByRefreshToken(refreshToken);
+        return optionalToken.isPresent();
     }
 }
