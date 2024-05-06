@@ -30,7 +30,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
 	//MariaDB
-	implementation 'org.mariadb.jdbc:mariadb-java-client:3.3.3'
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 
 	//JWT
 	implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
