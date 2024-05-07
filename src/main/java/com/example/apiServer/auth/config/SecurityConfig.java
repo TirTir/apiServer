@@ -1,8 +1,8 @@
-package com.example.apiServer.Auth.jwt;
+package com.example.apiServer.auth.config;
 
-import com.example.apiServer.Auth.jwt.CustomJwtFilter;
-import com.example.apiServer.Auth.jwt.JwtAccessDeniedHandler;
-import com.example.apiServer.Auth.jwt.JwtAuthenticationEntryPoint;
+import com.example.apiServer.auth.jwt.CustomJwtFilter;
+import com.example.apiServer.auth.jwt.JwtAccessDeniedHandler;
+import com.example.apiServer.auth.jwt.JwtAuthenticationEntryPoint;
 import jakarta.servlet.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -56,7 +56,6 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-
         return new BCryptPasswordEncoder();
     }
 }

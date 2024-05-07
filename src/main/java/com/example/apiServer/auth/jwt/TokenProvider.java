@@ -1,8 +1,7 @@
-package com.example.apiServer.Auth.jwt;
+package com.example.apiServer.auth.jwt;
 
 import com.example.apiServer.entity.RefreshToken;
 import com.example.apiServer.repository.RefreshTokenRepository;
-import com.example.apiServer.repository.TreatRepository;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;

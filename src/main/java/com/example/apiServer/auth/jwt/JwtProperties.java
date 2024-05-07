@@ -1,4 +1,4 @@
-package com.example.apiServer.Auth.jwt;
+package com.example.apiServer.auth.jwt;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
