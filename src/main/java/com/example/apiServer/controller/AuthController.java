@@ -1,7 +1,6 @@
 package com.example.apiServer.controller;
 
-import com.example.apiServer.Auth.jwt.CustomJwtFilter;
-import com.example.apiServer.dto.user.ReissueRequest;
+import com.example.apiServer.auth.jwt.CustomJwtFilter;
 import com.example.apiServer.dto.user.UserRequest;
 import com.example.apiServer.dto.user.UserResponse;
 import com.example.apiServer.service.AuthService;

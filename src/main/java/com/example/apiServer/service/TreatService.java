@@ -16,9 +16,8 @@ public class TreatService {
 
     // 진료 내역
     @Transactional
-    public Treat findById(Long id){
-        Optional<Treat> treat = treatRepository.findById(id);
-        return treat.get();
+    public Optional<Treat> findById(Long id){
+        return treatRepository.findById(id);
     }
 
     @Transactional

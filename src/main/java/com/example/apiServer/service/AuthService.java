@@ -1,6 +1,6 @@
 package com.example.apiServer.service;
 
-import com.example.apiServer.Auth.jwt.TokenProvider;
+import com.example.apiServer.auth.jwt.TokenProvider;
 import com.example.apiServer.dto.user.UserResponse;
 import com.example.apiServer.repository.RefreshTokenRepository;
 import lombok.RequiredArgsConstructor;
