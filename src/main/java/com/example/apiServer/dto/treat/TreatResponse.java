@@ -1,24 +1,24 @@
 package com.example.apiServer.dto.treat;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Data
+@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class TreatResponse {
-    Long id;
-    Long medicationId;
-    LocalDateTime treatStartDate;
-    int treatSubject;
+    Long id; //진료내역
+    Long medicationId; //처방내역
+    LocalDateTime treatStartDate; //진료개시일
+    int treatSubject; //진료과목
     String hospitalName;
-    String visitDays;
-    int prescribeCnt;
-    int deductibleAmt;
-    int publicCharge;
+    String visitDays; //방문일수
+    int prescribeCnt; //복용기간
+    int deductibleAmt; //본인부담금
+    int publicCharge; //공단부담금
+
+    // builder ( 하나로 만들기 )
+
 }

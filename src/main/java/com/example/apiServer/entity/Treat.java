@@ -15,12 +15,12 @@ public class Treat {
     @Column(name = "treat_id")
     private Long id;
     @OneToOne(mappedBy = "medication")
-    private Medication medication;
+    private Medication medication; // 처방내역
     private LocalDateTime treatStartDate; // 진료개시일
     private int treatSubject; //진료과목
     private String hospitalName;
     private String visitDays; //방문일수
-    private String userName;
+    private String userName; // 이름
     private String userIdentity; //주민번호
     private int prescribeCnt; //복용기간
     private int deductibleAmt; //본인부담금
