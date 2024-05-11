@@ -14,7 +14,8 @@ public class Treat {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 기본키를 자동으로 1씩 증가
     @Column(name = "treat_id")
     private Long id;
-    @OneToOne(mappedBy = "medication")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "medication_id")
     private Medication medication; // 처방내역
     private LocalDateTime treatStartDate; // 진료개시일
     private int treatSubject; //진료과목
@@ -22,7 +23,7 @@ public class Treat {
     private String visitDays; //방문일수
     private String userName; // 이름
     private String userIdentity; //주민번호
-    private int prescribeCnt; //복용기간
+    private int prescribeCnt; //처방횟수
     private int deductibleAmt; //본인부담금
     private int publicCharge; //공단부담금
 }

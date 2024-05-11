@@ -6,12 +6,14 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "drug")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "DTYPE")
 @Getter @Setter
 public class Drug {
     @Id
     @GeneratedValue
     @Column(name = "drug_id")
-    private String drugCode; //약품코드
+    private int drugCode; //약품코드
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "medication_id")
     private Medication medication;

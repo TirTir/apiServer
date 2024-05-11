@@ -16,9 +16,11 @@ public class Medication {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 기본키를 자동으로 1씩 증가
     @JoinColumn(name = "medication_id")
     private Long id;
-    @OneToMany(mappedBy = "medication")
-    private List<Drug> orders = new ArrayList<>();
+    @OneToOne(mappedBy = "medication", fetch = FetchType.LAZY)
+    private Treat treat;
+    @OneToMany(mappedBy = "medication", cascade = CascadeType.ALL)
+    private List<Medidetail> medidetails = new ArrayList<>();
     private String diseaseId; //질병분류
-    private int prescribeCnt; //복용기간
+    private int prescribeDays; //복용기간
     private Date treatDate; //진료,처방일자
 }
