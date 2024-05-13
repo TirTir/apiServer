@@ -21,7 +21,7 @@ public class TreatService {
     }
 
     @Transactional
-    public List<Treat> findAllByIdentity(String identity){
-        return treatRepository.findAllByIdentity(identity);
+    public List<Treat> findAllByIdentity(String userIdentity){
+        return treatRepository.findAllByUserIdentity(userIdentity);
     }
 }

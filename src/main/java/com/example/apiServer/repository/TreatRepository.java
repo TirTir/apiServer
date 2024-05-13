@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface TreatRepository extends JpaRepository<Treat, Long> {
     Optional<Treat> findById(Long id);
-    List<Treat> findAllByIdentity(String identity);
+    List<Treat> findAllByUserIdentity(String userIdentity);
 }

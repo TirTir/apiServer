@@ -19,4 +19,4 @@ spring:
 
 jwt:
   header: Authorization
-  secret: RandomSecretKey1234567890!RandomSecretKey1234567890!RandomSecretKey1234567890!
+  secret: YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd6eXoxMjMxMjMxMjMxMjMxMjMxMzEyMzEyMzEzMTIzMTIzMTIzMTMxMjMxMzEzMTMxMjM

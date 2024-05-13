@@ -16,8 +16,6 @@ public class TreatResponse {
     String hospitalName;
     String visitDays; //방문일수
     int prescribeCnt; //복용기간
-    int deductibleAmt; //본인부담금
-    int publicCharge; //공단부담금
 
     // builder ( 하나로 만들기 )
 
