@@ -18,6 +18,7 @@ spring:
     defer-datasource-initialization: true
 
   jwt:
+    ussuer: uj0791@naver.com
     header: Authorization
     secret: YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd6eXoxMjMxMjMxMjMxMjMxMjMxMzEyMzEyMzEzMTIzMTIzMTIzMTMxMjMxMzEzMTMxMjM
-    accessTokenValidityInSeconds: 3600
+    accessTokenValidityInSeconds: 3600 # 만료시간

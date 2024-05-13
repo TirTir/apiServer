@@ -24,7 +24,6 @@ public class TokenProvider {
     private static final String AUTHORITIES_KEY = "auth";
     private final String secret;
     private Key key;
-    private final long validityInSeconds;
     // 어세스 토큰 유효시간 (1시간)
     private long accessTokenValidTime = 1 * 60 * 60 * 1000L;
     // 리프레시 토큰 유효시간 (1일)
@@ -34,9 +33,8 @@ public class TokenProvider {
     private RefreshTokenRepository refreshTokenRepository;
 
     @Autowired
-    public TokenProvider(String secret, Long validityInSeconds) {
+    public TokenProvider(String secret) {
         this.secret = secret;
-        this.validityInSeconds = validityInSeconds;
 
         // 시크릿 값을 복호화(decode) 하여 키 변수에 할당
         byte[] keyBytes = Decoders.BASE64.decode(secret);
@@ -52,12 +50,13 @@ public class TokenProvider {
         return this.createToken(authentication, refreshTokenValidTime);
     }
 
-    public String createToken(Authentication authentication, long validityInSeconds) {
+    public String createToken(Authentication authentication, long expired) {
         String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
 
-        Date validity = new Date(validityInSeconds + this.validityInSeconds * 1000);
+        Date now = new Date();
+        Date validity = new Date(now.getTime() + expired);
         return Jwts.builder()
                 .setSubject(authentication.getName())
                 .claim(AUTHORITIES_KEY, authorities)

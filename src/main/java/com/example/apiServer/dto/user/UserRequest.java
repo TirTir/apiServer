@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserRequest {
     private String userName;
-    private String userIdentity;
+    private String userIdentity; //주민번호
 }

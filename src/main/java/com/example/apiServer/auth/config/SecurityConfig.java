@@ -24,13 +24,10 @@ public class SecurityConfig {
 
     @Autowired
     private CorsFilter corsFilter;
-
     @Autowired
     private CustomJwtFilter customJwtFilter;
-
     @Autowired
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-
     @Autowired
     private JwtAccessDeniedHandler jwtAccessDeniedHandler;
 
