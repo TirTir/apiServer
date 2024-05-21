@@ -11,11 +11,11 @@ import lombok.Setter;
 @Getter @Setter
 public class Drug {
     @Id
-    @GeneratedValue
-    @Column(name = "drug_id")
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column(name = "drugId")
     private int drugCode; //약품코드
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "medication_id")
+    @JoinColumn(name = "medicationId")
     private Medication medication;
     private String prescribeDrugName; //처방약품명
     private String prescribeDrugEffect; //처방약품효능

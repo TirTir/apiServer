@@ -11,8 +11,6 @@ import org.springframework.context.annotation.Configuration;
 public class JwtConfig {
     @Bean
     public TokenProvider tokenProvider(JwtProperties jwtProperties) {
-        String secret = jwtProperties.getSecret();
-        System.out.println(secret);
         return new TokenProvider(jwtProperties.getSecret());
     }
 }
